@@ -1,135 +1,26 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
+    vehiculos vh1 = new vehiculos("RGU 752", "chevrolet", 2011, 245, 21.2, 15780, true);
 
-    Scanner teclado = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 
-    String id;
-    String nombre;
-    int edad;
-    double peso;
-    double altura;
-    int op;
-    clientes c1 = null;
-    List<clientes>lstClientes = new ArrayList<>();
+    System.out.print("Ingrese los kilómetros recorridos: ");
+    double kmRecorridos = scanner.nextDouble();
 
-    boolean estado = true;
-    while (estado) {
+    System.out.println("Ingrese los litros de combustible consumidos: ");
+    double litrosConsumidos = scanner.nextDouble();
 
+    vh1.rendimiento();
+    System.out.println("el rendimiento del vehiculo es de: " + vh1.rendimiento() + "km/L");
 
-        System.out.println("""
-                1. CREAR CLIENTE
-                2. CALCULAR IMC
-                3. CLASIFICAR IMC
-                4. INGRESQAR NUEVO PESO
-                5. Mostrar clientes 
-                6. Buscar cliente
-                7. SALIR""");
+    vh1.clasificarRendimiento();
+    System.out.println("el vehoculo rindio: " + vh1.clasificarRendimiento());
 
-        System.out.println("seleciones una opcion del menu:");
-        op = teclado.nextInt();
+    vh1.calcularCostoCombustible();
+    System.out.printf("el costo del combustible fue: " + vh1.calcularCostoCombustible());
 
-        switch (op) {
-            case 1:
-                System.out.println("Ingrese su id:");
-                id = teclado.next();
-                System.out.println("Ingrese su nombre:");
-                nombre = teclado.next();
-                System.out.println("Ingrese su edad:");
-                edad = teclado.nextInt();
-                System.out.println("Ingrese su peso:");
-                peso = teclado.nextDouble();
-                System.out.println("Ingrese su altura:");
-                altura = teclado.nextDouble();
-                lstClientes.add(new clientes(id, nombre, edad, peso, altura));
-                break;
-
-            case 2:
-                String codigo1;
-                System.out.println("ingrese el id a buscar:");
-                codigo1 = teclado.next();
-                clientes encontrado1 = null;
-                for (clientes c : lstClientes){
-                    if(c.getId().equalsIgnoreCase(codigo1)){
-                        encontrado1 = c;
-                    }
-                }
-                if(encontrado1 != null){
-                    System.out.println(encontrado1);
-                } else {
-                    System.out.println("no encontrado");
-                }
-                if (encontrado1 != null) {
-                    System.out.println("calulcar IMC:"+ encontrado1.calculcarIMC());
-
-                } else {
-                    System.out.println("no se ha ingresado cliente");
-                }
-                break;
-            case 3:
-                //iterar para encontrar el codigo
-                String codigo2;
-                System.out.println("ingrese el id a buscar:");
-                codigo2 = teclado.next();
-                clientes encontrado2 = null;
-                for (clientes c : lstClientes){
-                    if(c.getId().equalsIgnoreCase(codigo2)){
-                        encontrado2 = c;
-                    }
-                }
-                if(encontrado1 != null){
-                    System.out.println(encontrado2);
-                } else {
-                    System.out.println("no encontrado");
-                }
-                //agregar la formula que necesita
-                if (encontrado2 != null) {
-                    System.out.println("clasificar IMC"+encontrado2.clasificarIMC());
-                } else {
-                    System.out.println("no se ha ingresado cliente");
-                }
-                break;
-
-            case 4:
-                System.out.println("ingresar nuevo peso");
-                break;
-            case 5:
-                System.out.println("mostrar clientes");
-                if(lstClientes.isEmpty()){
-                    System.out.println("no hay clientes");
-                }else {
-                    for (clientes c : lstClientes)
-                        System.out.println(c);
-                }
-                break;
-            case 6:
-                System.out.println("mostrar por id");
-                String codigo;
-                System.out.println("ingrese el id a buscar:");
-                codigo = teclado.next();
-                clientes encontrado = null;
-                for (clientes c : lstClientes){
-                    if(c.getId().equalsIgnoreCase(codigo)){
-                        encontrado = c;
-                    }
-                }
-                if(encontrado != null){
-                    System.out.println(encontrado);
-                } else {
-                    System.out.println("no encontrado");
-                }
-                break;
-            case 7:
-                System.out.println("salir");
-                estado = false;
-                break;
-        }
-    }
-
-
-
-
-
-
-
+    System.out.println("");
+    vh1.costoPorKilometro();
+    System.out.println("el precio por km es de: $" + vh1.costoPorKilometro());
 }
